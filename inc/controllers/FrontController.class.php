@@ -5,7 +5,7 @@
  * Used to have only one point of contact with request
  * 
  */
-class frontController
+class FrontController
 {
 
     private function __construct()
@@ -22,14 +22,13 @@ class frontController
             require_once 'init/db_conn.php';
             require_once 'init/smarty.php';
             
-            $request = \inc\registry\requestRegistry::getInstance();
+            $request = \inc\registry\RequestRegistry::getInstance();
 
             //resolve controller file name
-            $controllerName = $request->get("cmd") ? $request->get("cmd") : "main";
-            $controllerFileName = mb_convert_case($controllerName, MB_CASE_LOWER)."controller.class.php";
+            $controllerName = $request->get("cmd") ? mb_convert_case($request->get("cmd"), MB_CASE_TITLE) : "Main";
 
             //check is controller file exist
-            if(!file_exists(\inc\registry\applicationRegistry::getInstance()->get("CONTROLLERS_DIR").$controllerFileName))
+            if(!file_exists(\inc\registry\ApplicationRegistry::getInstance()->get("CONTROLLERS_DIR").$controllerName."Controller.class.php"))
             {
                 throw new RuntimeException("Page doesn't exist.", 1);
             }

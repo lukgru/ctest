@@ -27,13 +27,13 @@ abstract class View
     
     public function __construct()
     {
-        if(!(\inc\registry\applicationRegistry::getInstance()->get("smarty") instanceof \Smarty))
+        if(!(\inc\registry\ApplicationRegistry::getInstance()->get("smarty") instanceof \Smarty))
         {
             throw new \Exception("Required object Smarty doesn't exist.", 1);
             exit;
         }
         
-        $this->smarty = \inc\registry\applicationRegistry::getInstance()->get("smarty");
+        $this->smarty = \inc\registry\ApplicationRegistry::getInstance()->get("smarty");
         $this->addCssFiles("/script/css/style.css");
     }
 

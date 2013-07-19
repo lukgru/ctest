@@ -2,7 +2,7 @@
 
 namespace inc\views;
 
-class mainView extends View
+class MainView extends View
 {
 
     public function __construct()

@@ -19,7 +19,7 @@ class Users
                 FROM users
                 WHERE user_id = :user_id";
 
-        $request = \inc\registry\applicationRegistry::getInstance()->get("pdo")->prepare($sql);
+        $request = \inc\registry\ApplicationRegistry::getInstance()->get("pdo")->prepare($sql);
         $request->bindValue(":user_id", $userId, \PDO::PARAM_INT);
         $request->execute();
 
@@ -54,7 +54,7 @@ class Users
                 LEFT JOIN users AS b ON b.user_id = a.friend
                 WHERE a.user = :user_id";
         
-        $request = \inc\registry\applicationRegistry::getInstance()->get("pdo")->prepare($sql);
+        $request = \inc\registry\ApplicationRegistry::getInstance()->get("pdo")->prepare($sql);
         $request->bindValue(":user_id", $user->getId(), \PDO::PARAM_INT);
         $request->execute();
 
@@ -99,7 +99,7 @@ class Users
           LEFT JOIN users AS c ON b.friend = c.user_id
           WHERE a.user = :user_id AND b.friend != :user_id";
 
-        $request = \inc\registry\applicationRegistry::getInstance()->get("pdo")->prepare($sql);
+        $request = \inc\registry\ApplicationRegistry::getInstance()->get("pdo")->prepare($sql);
         $request->bindValue(":user_id", $user->getId(), \PDO::PARAM_INT);
         $request->execute();
 
@@ -144,7 +144,7 @@ class Users
                 LEFT JOIN users AS b ON b.user_id = a.friend
                 WHERE a.user IN (".implode(",", array_keys($userFriends)).") AND a.friend != :user_id";
 
-        $request = \inc\registry\applicationRegistry::getInstance()->get("pdo")->prepare($sql);
+        $request = \inc\registry\ApplicationRegistry::getInstance()->get("pdo")->prepare($sql);
         $request->bindValue(":user_id", $user->getId(), \PDO::PARAM_INT);
         $request->execute();
 
@@ -186,7 +186,7 @@ class Users
      */
     static public function getUsers()
     {
-        $pdo = \inc\registry\applicationRegistry::getInstance()->get("pdo");
+        $pdo = \inc\registry\ApplicationRegistry::getInstance()->get("pdo");
 
         $sql = "SELECT user_id, name, surname, age, gender FROM users";
 

@@ -1,7 +1,7 @@
 <?php
 namespace inc\views;
 
-class errorView extends View
+class ErrorView extends View
 {
     private $message = "";
     

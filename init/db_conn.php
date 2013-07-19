@@ -3,5 +3,5 @@ $pdo = new PDO("mysql:host=localhost;dbname=cargomedia", "cargomedia", "cargomed
 $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 $pdo->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
 
-\inc\registry\applicationRegistry::getInstance()->set("pdo", $pdo);
+\inc\registry\ApplicationRegistry::getInstance()->set("pdo", $pdo);
 ?>

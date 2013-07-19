@@ -2,7 +2,7 @@
 
 namespace inc\views\user;
 
-class mainView extends \inc\views\View
+class MainView extends \inc\views\View
 {
 
     private $user = null;

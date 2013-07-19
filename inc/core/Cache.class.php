@@ -10,7 +10,7 @@ class Cache
     static public function get()
     {
         //Remember the cache engine must inherit the Registry
-        return \inc\registry\sessionRegistry::getInstance();
+        return \inc\registry\SessionRegistry::getInstance();
     }
 }
 ?>

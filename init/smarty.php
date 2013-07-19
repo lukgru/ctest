@@ -8,5 +8,5 @@ $smarty->compile_check = true;
 $smarty->error_reporting = E_ALL;
 $smarty->debugging = false;
 
-\inc\registry\applicationRegistry::getInstance()->set("smarty", $smarty);
+\inc\registry\ApplicationRegistry::getInstance()->set("smarty", $smarty);
 ?>

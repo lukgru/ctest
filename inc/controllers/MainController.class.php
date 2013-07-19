@@ -8,7 +8,7 @@ class MainController extends Controller
 {
     public function actIndex()
     {
-        $mainView = new \inc\views\mainView();
+        $mainView = new \inc\views\MainView();
         $mainView->display();
     }
 

@@ -14,7 +14,7 @@ class ErrorController extends Controller
 
     public function actIndex()
     {
-        $errorView = new \inc\views\errorView();
+        $errorView = new \inc\views\ErrorView();
 
         if($this->exception instanceof \Exception)
         {

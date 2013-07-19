@@ -11,7 +11,7 @@ class UserController extends Controller
     {
         try
         {
-            $userId = \inc\registry\requestRegistry::getInstance()->get("id");
+            $userId = \inc\registry\RequestRegistry::getInstance()->get("id");
 
             if(!$userId)
             {
@@ -25,12 +25,12 @@ class UserController extends Controller
                 throw new \RuntimeException("User doesn't exist.", 1);
             }
 
-            $userMainView = new \inc\views\user\mainView($user);
+            $userMainView = new \inc\views\user\MainView($user);
             $userMainView->display();
         }
         catch(\Exception $ex)
         {
-            $errorView = new \inc\views\errorView();
+            $errorView = new \inc\views\ErrorView();
             $errorView->setMessage($ex->getMessage());
             $errorView->display();
         }

@@ -1,31 +1,33 @@
 <?php
-/*
- * Handle session access
+/**
+ * Handle memcached access
  */
 namespace inc\registry;
 
-class sessionRegistry extends \inc\registry\Registry
+class MemcachedRegistry extends \inc\registry\Registry
 {
     private static $instance;
+    private $memcached;
     
     protected function __construct()
     {
-        session_start();
+        $this->memcached = new \Memcached("aslkdj");
+        $this->memcached->addServer('localhost', 11211);
     }
 
     public function set($key, $value)
     {
-	$_SESSION["registry"][$key] = $value;
+	return $this->memcached->add($key, $value);
     }
-
+    
     public function get($key)
     {
-	return isset($_SESSION["registry"][$key]) ? $_SESSION["registry"][$key] : false;
+	return $this->memcached->get($key);
     }
 
     public function check($key)
     {
-	return ($this->get($key) !== false);
+	return ($this->memcached->get($key) !== false);
     }
 
     public function getInstance()
