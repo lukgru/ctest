@@ -26,7 +26,7 @@ class frontController
 
             //resolve controller file name
             $controllerName = $request->get("cmd") ? $request->get("cmd") : "main";
-            $controllerFileName = mb_convert_case($controllerName, MB_CASE_LOWER)."Controller.class.php";
+            $controllerFileName = mb_convert_case($controllerName, MB_CASE_LOWER)."controller.class.php";
 
             //check is controller file exist
             if(!file_exists(\inc\registry\applicationRegistry::getInstance()->get("CONTROLLERS_DIR").$controllerFileName))

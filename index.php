@@ -15,7 +15,7 @@ try
 
     spl_autoload_register('my_autoloader');
     
-    require_once 'inc/controllers/frontController.class.php';
+    require_once 'inc/controllers/frontcontroller.class.php';
     //one point of contact with request
     FrontController::run();
 }
