@@ -1,0 +1,21 @@
+body {
+    background-image: url(../../static/layout/bg.png);
+    background-repeat: repeat;
+}
+
+.users {
+    overflow: hidden;
+}
+
+.users .user {
+    float: left;
+}
+
+.user {
+    padding: 20px;
+    border: 1px solid #ccc;
+    margin: 20px;
+}
+.user:hover {
+    background-color: #ccc;
+}
