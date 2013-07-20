@@ -9,6 +9,12 @@ class ApplicationRegistry extends \inc\registry\Registry
     private static $instance;
     private $properties = array();
 
+    protected function __construct()
+    {
+        $this->set("ROOT_DIR", dirname(dirname(dirname(__FILE__)))."/");
+        $this->set("CONTROLLERS_DIR", dirname(dirname(dirname(__FILE__)))."/inc/controllers/");
+    }
+    
     public function set($key, $value)
     {
 	$this->properties[$key] = $value;

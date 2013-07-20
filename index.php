@@ -17,6 +17,9 @@ try
     
     require_once 'inc/controllers/FrontController.class.php';
     //one point of contact with request
+    FrontController::appInit();
+    FrontController::dbInit();
+    FrontController::smartyInit();
     FrontController::run();
 }
 catch(Exception $ex)

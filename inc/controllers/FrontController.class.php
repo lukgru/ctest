@@ -7,7 +7,6 @@
  */
 class FrontController
 {
-
     private function __construct()
     {
         
@@ -15,13 +14,8 @@ class FrontController
 
     static function run()
     {
-        require_once 'init/appstart.php';
-
         try
         {
-            require_once 'init/db_conn.php';
-            require_once 'init/smarty.php';
-            
             $request = \inc\registry\RequestRegistry::getInstance();
 
             //resolve controller file name
@@ -61,6 +55,35 @@ class FrontController
             $controller->setException($ex);
             $controller->actIndex();
         }
+    }
+
+    static function appInit()
+    {
+        date_default_timezone_set("Europe/Warsaw");
+        
+    }
+
+    static function dbInit()
+    {
+        $pdo = new PDO("mysql:host=localhost;dbname=cargomedia", "cargomedia", "cargomedia", array(PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8"));
+        $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        $pdo->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
+
+        \inc\registry\ApplicationRegistry::getInstance()->set("pdo", $pdo);
+    }
+
+    static function smartyInit()
+    {
+        require_once \inc\registry\ApplicationRegistry::getInstance()->get("ROOT_DIR")."libs/Smarty-3.1.14/libs/Smarty.class.php";
+
+        $smarty = new Smarty;
+        $smarty->template_dir = "templates/";
+        $smarty->compile_dir = "templates_c/";
+        $smarty->compile_check = true;
+        $smarty->error_reporting = E_ALL;
+        $smarty->debugging = false;
+
+        \inc\registry\ApplicationRegistry::getInstance()->set("smarty", $smarty);
     }
 
 }
