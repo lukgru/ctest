@@ -4,6 +4,7 @@
  * Front controller design pattern
  * Used to have only one point of contact with request
  * 
+ * 
  */
 class FrontController
 {
@@ -16,6 +17,10 @@ class FrontController
     {
         try
         {
+            self::appInit();
+            self::dbInit();
+            self::smartyInit();
+            
             $request = \inc\registry\RequestRegistry::getInstance();
 
             //resolve controller file name
@@ -59,19 +64,57 @@ class FrontController
 
     static function appInit()
     {
-        date_default_timezone_set("Europe/Warsaw");
+        $appRegistry = \inc\registry\ApplicationRegistry::getInstance();
         
+        date_default_timezone_set("Europe/Warsaw");
+
+        
+        //check if exist local config file, if exist load settings else check if exist original config file and load settings
+        if(file_exists($appRegistry->get("ROOT_DIR")."inc/config/config_local.yml"))
+        {
+            require_once $appRegistry->get("ROOT_DIR")."libs/spyc-master/Spyc.php";
+            
+            $config = Spyc::YAMLLoad($appRegistry->get("ROOT_DIR")."inc/config/config_local.yml");
+        }
+        elseif(file_exists($appRegistry->get("ROOT_DIR")."inc/config/config_local.yml"))
+        {
+            require_once $appRegistry->get("ROOT_DIR")."libs/spyc-master/Spyc.php";
+            
+            $config = Spyc::YAMLLoad($appRegistry->get("ROOT_DIR")."inc/config/config_local.yml");
+        }
+        
+        if(isset($config) && is_array($config))
+        {
+            foreach($config as $key => $value)
+            {
+                $appRegistry->set($key, $value);
+            }
+        }
     }
 
+    /**
+     * Databse initialize
+     * @throws RuntimeException
+     */
     static function dbInit()
     {
-        $pdo = new PDO("mysql:host=localhost;dbname=cargomedia", "cargomedia", "cargomedia", array(PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8"));
+        $appRegistry = \inc\registry\ApplicationRegistry::getInstance();
+        
+        if(!$appRegistry->check("database_host") || !$appRegistry->check("database_name") || !$appRegistry->check("database_user") || !$appRegistry->check("database_pass"))
+        {
+            throw new RuntimeException("Can't connect to database.", 1);
+        }
+        
+        $pdo = new PDO("mysql:host=".$appRegistry->get("database_host").";dbname=".$appRegistry->get("database_name"), $appRegistry->get("database_user"), $appRegistry->get("database_pass"), array(PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8"));
         $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         $pdo->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
 
-        \inc\registry\ApplicationRegistry::getInstance()->set("pdo", $pdo);
+        $appRegistry->set("pdo", $pdo);
     }
 
+    /**
+     * Smarty initialize
+     */
     static function smartyInit()
     {
         require_once \inc\registry\ApplicationRegistry::getInstance()->get("ROOT_DIR")."libs/Smarty-3.1.14/libs/Smarty.class.php";
