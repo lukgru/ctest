@@ -1,0 +1,353 @@
+<?xml version="1.0"?>
+<mysqldump xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<database name="pearnet_ctest">
+	<table_data name="users">
+	<row>
+		<field name="user_id">1</field>
+		<field name="name">Paul</field>
+		<field name="surname">Crowe</field>
+		<field name="age">28</field>
+		<field name="gender">m</field>
+	</row>
+	<row>
+		<field name="user_id">2</field>
+		<field name="name">Rob</field>
+		<field name="surname">Fitz</field>
+		<field name="age">23</field>
+		<field name="gender">m</field>
+	</row>
+	<row>
+		<field name="user_id">3</field>
+		<field name="name">Ben</field>
+		<field name="surname">O'Carolan</field>
+		<field name="age">0</field>
+		<field name="gender">m</field>
+	</row>
+	<row>
+		<field name="user_id">4</field>
+		<field name="name">Victor</field>
+		<field name="surname"></field>
+		<field name="age">28</field>
+		<field name="gender">m</field>
+	</row>
+	<row>
+		<field name="user_id">5</field>
+		<field name="name">Peter</field>
+		<field name="surname">Mac</field>
+		<field name="age">29</field>
+		<field name="gender">m</field>
+	</row>
+	<row>
+		<field name="user_id">6</field>
+		<field name="name">John</field>
+		<field name="surname">Barry</field>
+		<field name="age">18</field>
+		<field name="gender">m</field>
+	</row>
+	<row>
+		<field name="user_id">7</field>
+		<field name="name">Sarah</field>
+		<field name="surname">Lane</field>
+		<field name="age">30</field>
+		<field name="gender">f</field>
+	</row>
+	<row>
+		<field name="user_id">8</field>
+		<field name="name">Susan</field>
+		<field name="surname">Downe</field>
+		<field name="age">28</field>
+		<field name="gender">f</field>
+	</row>
+	<row>
+		<field name="user_id">9</field>
+		<field name="name">Jack</field>
+		<field name="surname">Stam</field>
+		<field name="age">28</field>
+		<field name="gender">m</field>
+	</row>
+	<row>
+		<field name="user_id">10</field>
+		<field name="name">Amy</field>
+		<field name="surname">Lane</field>
+		<field name="age">24</field>
+		<field name="gender">f</field>
+	</row>
+	<row>
+		<field name="user_id">11</field>
+		<field name="name">Sandra</field>
+		<field name="surname">Phelan</field>
+		<field name="age">28</field>
+		<field name="gender">f</field>
+	</row>
+	<row>
+		<field name="user_id">12</field>
+		<field name="name">Laura</field>
+		<field name="surname">Murphy</field>
+		<field name="age">33</field>
+		<field name="gender">f</field>
+	</row>
+	<row>
+		<field name="user_id">13</field>
+		<field name="name">Lisa</field>
+		<field name="surname">Daly</field>
+		<field name="age">28</field>
+		<field name="gender">f</field>
+	</row>
+	<row>
+		<field name="user_id">14</field>
+		<field name="name">Mark</field>
+		<field name="surname">Johnson</field>
+		<field name="age">28</field>
+		<field name="gender">m</field>
+	</row>
+	<row>
+		<field name="user_id">15</field>
+		<field name="name">Seamus</field>
+		<field name="surname">Crowe</field>
+		<field name="age">24</field>
+		<field name="gender">m</field>
+	</row>
+	<row>
+		<field name="user_id">16</field>
+		<field name="name">Daren</field>
+		<field name="surname">Slater</field>
+		<field name="age">28</field>
+		<field name="gender">m</field>
+	</row>
+	<row>
+		<field name="user_id">17</field>
+		<field name="name">Dara</field>
+		<field name="surname">Zoltan</field>
+		<field name="age">48</field>
+		<field name="gender">m</field>
+	</row>
+	<row>
+		<field name="user_id">18</field>
+		<field name="name">Marie</field>
+		<field name="surname">D</field>
+		<field name="age">28</field>
+		<field name="gender">f</field>
+	</row>
+	<row>
+		<field name="user_id">19</field>
+		<field name="name">Catriona</field>
+		<field name="surname">Long</field>
+		<field name="age">28</field>
+		<field name="gender">f</field>
+	</row>
+	<row>
+		<field name="user_id">20</field>
+		<field name="name">Katy</field>
+		<field name="surname">Couch</field>
+		<field name="age">28</field>
+		<field name="gender">f</field>
+	</row>
+	</table_data>
+	<table_data name="users_friends">
+	<row>
+		<field name="user">1</field>
+		<field name="friend">2</field>
+	</row>
+	<row>
+		<field name="user">2</field>
+		<field name="friend">1</field>
+	</row>
+	<row>
+		<field name="user">2</field>
+		<field name="friend">3</field>
+	</row>
+	<row>
+		<field name="user">3</field>
+		<field name="friend">2</field>
+	</row>
+	<row>
+		<field name="user">3</field>
+		<field name="friend">4</field>
+	</row>
+	<row>
+		<field name="user">3</field>
+		<field name="friend">5</field>
+	</row>
+	<row>
+		<field name="user">3</field>
+		<field name="friend">7</field>
+	</row>
+	<row>
+		<field name="user">4</field>
+		<field name="friend">3</field>
+	</row>
+	<row>
+		<field name="user">5</field>
+		<field name="friend">3</field>
+	</row>
+	<row>
+		<field name="user">5</field>
+		<field name="friend">6</field>
+	</row>
+	<row>
+		<field name="user">5</field>
+		<field name="friend">7</field>
+	</row>
+	<row>
+		<field name="user">5</field>
+		<field name="friend">10</field>
+	</row>
+	<row>
+		<field name="user">5</field>
+		<field name="friend">11</field>
+	</row>
+	<row>
+		<field name="user">6</field>
+		<field name="friend">5</field>
+	</row>
+	<row>
+		<field name="user">7</field>
+		<field name="friend">3</field>
+	</row>
+	<row>
+		<field name="user">7</field>
+		<field name="friend">5</field>
+	</row>
+	<row>
+		<field name="user">7</field>
+		<field name="friend">8</field>
+	</row>
+	<row>
+		<field name="user">7</field>
+		<field name="friend">12</field>
+	</row>
+	<row>
+		<field name="user">7</field>
+		<field name="friend">20</field>
+	</row>
+	<row>
+		<field name="user">8</field>
+		<field name="friend">7</field>
+	</row>
+	<row>
+		<field name="user">9</field>
+		<field name="friend">12</field>
+	</row>
+	<row>
+		<field name="user">10</field>
+		<field name="friend">5</field>
+	</row>
+	<row>
+		<field name="user">10</field>
+		<field name="friend">11</field>
+	</row>
+	<row>
+		<field name="user">11</field>
+		<field name="friend">5</field>
+	</row>
+	<row>
+		<field name="user">11</field>
+		<field name="friend">10</field>
+	</row>
+	<row>
+		<field name="user">11</field>
+		<field name="friend">19</field>
+	</row>
+	<row>
+		<field name="user">11</field>
+		<field name="friend">20</field>
+	</row>
+	<row>
+		<field name="user">12</field>
+		<field name="friend">7</field>
+	</row>
+	<row>
+		<field name="user">12</field>
+		<field name="friend">9</field>
+	</row>
+	<row>
+		<field name="user">12</field>
+		<field name="friend">13</field>
+	</row>
+	<row>
+		<field name="user">12</field>
+		<field name="friend">20</field>
+	</row>
+	<row>
+		<field name="user">13</field>
+		<field name="friend">12</field>
+	</row>
+	<row>
+		<field name="user">13</field>
+		<field name="friend">14</field>
+	</row>
+	<row>
+		<field name="user">13</field>
+		<field name="friend">20</field>
+	</row>
+	<row>
+		<field name="user">14</field>
+		<field name="friend">13</field>
+	</row>
+	<row>
+		<field name="user">14</field>
+		<field name="friend">15</field>
+	</row>
+	<row>
+		<field name="user">15</field>
+		<field name="friend">14</field>
+	</row>
+	<row>
+		<field name="user">16</field>
+		<field name="friend">18</field>
+	</row>
+	<row>
+		<field name="user">16</field>
+		<field name="friend">20</field>
+	</row>
+	<row>
+		<field name="user">17</field>
+		<field name="friend">18</field>
+	</row>
+	<row>
+		<field name="user">17</field>
+		<field name="friend">20</field>
+	</row>
+	<row>
+		<field name="user">18</field>
+		<field name="friend">17</field>
+	</row>
+	<row>
+		<field name="user">19</field>
+		<field name="friend">11</field>
+	</row>
+	<row>
+		<field name="user">19</field>
+		<field name="friend">20</field>
+	</row>
+	<row>
+		<field name="user">20</field>
+		<field name="friend">7</field>
+	</row>
+	<row>
+		<field name="user">20</field>
+		<field name="friend">11</field>
+	</row>
+	<row>
+		<field name="user">20</field>
+		<field name="friend">12</field>
+	</row>
+	<row>
+		<field name="user">20</field>
+		<field name="friend">13</field>
+	</row>
+	<row>
+		<field name="user">20</field>
+		<field name="friend">16</field>
+	</row>
+	<row>
+		<field name="user">20</field>
+		<field name="friend">17</field>
+	</row>
+	<row>
+		<field name="user">20</field>
+		<field name="friend">19</field>
+	</row>
+	</table_data>
+</database>
+</mysqldump>

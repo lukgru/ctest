@@ -1,11 +1,13 @@
 <?php
 
+require_once 'PHPUnit/Autoload.php';
+
 class UserTest extends PHPUnit_Framework_TestCase
 {
 
     public function setUp()
     {
-        require_once '../inc/user.class.php';
+        require_once '../inc/User.class.php';
     }
 
     public function testSetId()
