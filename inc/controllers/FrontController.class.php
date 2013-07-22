@@ -76,11 +76,11 @@ class FrontController
             
             $config = Spyc::YAMLLoad($appRegistry->get("ROOT_DIR")."inc/config/config_local.yml");
         }
-        elseif(file_exists($appRegistry->get("ROOT_DIR")."inc/config/config_local.yml"))
+        elseif(file_exists($appRegistry->get("ROOT_DIR")."inc/config/config.yml"))
         {
             require_once $appRegistry->get("ROOT_DIR")."libs/spyc-master/Spyc.php";
             
-            $config = Spyc::YAMLLoad($appRegistry->get("ROOT_DIR")."inc/config/config_local.yml");
+            $config = Spyc::YAMLLoad($appRegistry->get("ROOT_DIR")."inc/config/config.yml");
         }
         
         if(isset($config) && is_array($config))
