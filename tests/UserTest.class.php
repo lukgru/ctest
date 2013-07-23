@@ -7,7 +7,8 @@ class UserTest extends PHPUnit_Framework_TestCase
 
     public function setUp()
     {
-        require_once '../inc/User.class.php';
+        require_once '../inc/controllers/FrontController.class.php';
+        FrontController::autoloaderInit();
     }
 
     public function testSetId()
