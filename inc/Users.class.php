@@ -72,9 +72,13 @@ class Users
             $result[$row["user_id"]] = $tempUser;
         }
 
-        \inc\core\Cache::get()->set("user_friends_".$user->getId(), $result);
+        if(count($result) > 0)
+        {
+            \inc\core\Cache::get()->set("user_friends_".$user->getId(), array_keys($result));
+            return $result;
+        }
 
-        return count($result) > 0 ? $result : null;
+        return null;
     }
 
     /**
@@ -84,14 +88,12 @@ class Users
      */
     static public function getUserFriendsFriends(\inc\User $user)
     {
-        if(\inc\core\Cache::get()->check("user_friends_".$user->getId()))
+        if(!\inc\core\Cache::get()->check("user_friends_".$user->getId()))
         {
-            $userFriends = \inc\core\Cache::get()->get("user_friends_".$user->getId());
+            \inc\Users::getUserFriends($user);
         }
-        else
-        {
-            $userFriends = \inc\Users::getUserFriends($user);
-        }
+        
+        $userFriends = \inc\core\Cache::get()->get("user_friends_".$user->getId());
 
         $sql = "SELECT user_id, name, surname, age, gender 
           FROM users_friends AS a
@@ -107,7 +109,7 @@ class Users
 
         foreach($request->fetchAll() as $row)
         {
-            if(!array_key_exists($row["user_id"], $userFriends))
+            if(!in_array($row["user_id"], $userFriends))
             {
                 $tempUser = new \inc\User();
                 $tempUser->setId($row["user_id"]);
@@ -130,19 +132,17 @@ class Users
      */
     static public function getUserFriendsFriendsWith2Connections(\inc\User $user)
     {
-        if(\inc\core\Cache::get()->check("user_friends_".$user->getId()))
+        if(!\inc\core\Cache::get()->check("user_friends_".$user->getId()))
         {
-            $userFriends = \inc\core\Cache::get()->get("user_friends_".$user->getId());
-        }
-        else
-        {
-            $userFriends = \inc\Users::getUserFriends($user);
+            \inc\Users::getUserFriends($user);
         }
 
+        $userFriends = \inc\core\Cache::get()->get("user_friends_".$user->getId());
+        
         $sql = "SELECT user_id, name, surname, age, gender 
                 FROM users_friends AS a
                 LEFT JOIN users AS b ON b.user_id = a.friend
-                WHERE a.user IN (".implode(",", array_keys($userFriends)).") AND a.friend != :user_id";
+                WHERE a.user IN (".implode(",", $userFriends).") AND a.friend != :user_id";
 
         $request = \inc\registry\ApplicationRegistry::getInstance()->get("pdo")->prepare($sql);
         $request->bindValue(":user_id", $user->getId(), \PDO::PARAM_INT);
@@ -152,7 +152,7 @@ class Users
 
         foreach($request->fetchAll() as $row)
         {
-            if(!array_key_exists($row["user_id"], $userFriends))
+            if(!in_array($row["user_id"], $userFriends))
             {
                 $tempUser = new \inc\User();
                 $tempUser->setId($row["user_id"]);
@@ -161,16 +161,14 @@ class Users
                 $tempUser->setAge($row["age"]);
                 $tempUser->setGender($row["gender"]);
 
-                if(\inc\core\Cache::get()->check("user_friends_".$row["user_id"]))
+                if(!\inc\core\Cache::get()->check("user_friends_".$row["user_id"]))
                 {
-                    $userFriendFriends = \inc\core\Cache::get()->get("user_friends_".$row["user_id"]);
-                }
-                else
-                {
-                    $userFriendFriends = \inc\Users::getUserFriends($tempUser);
+                    \inc\Users::getUserFriends($tempUser);
                 }
 
-                if(is_array($userFriends) && is_array($userFriendFriends) && count(array_intersect(array_keys($userFriends), array_keys($userFriendFriends))) >= 2)
+                $userFriendFriends = \inc\core\Cache::get()->get("user_friends_".$row["user_id"]);
+                
+                if(is_array($userFriends) && is_array($userFriendFriends) && count(array_intersect($userFriends, $userFriendFriends)) >= 2)
                 {
                     $result[$row["user_id"]] = $tempUser;
                 }
