@@ -1,4 +1,5 @@
 templates_c/*
+inc/config/config_local.yml
 .DS_Store
 .DS_Store?
 .Spotlight*
