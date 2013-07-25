@@ -16,13 +16,31 @@ abstract class View
      * @var string
      */
     protected $template = "index.tpl";
-
+    /**
+     * CSS files
+     * In every single view we can add specific css files
+     * This files will be included in header
+     * @var array
+     */
     protected $cssFiles = array();
-    
+    /**
+     * JS files
+     * In every singel view we can add specific js files
+     * This files will be included in header
+     * @var array
+     */
     protected $jsFiles = array();
-    
+    /**
+     * JS files
+     * In every singel view we can add specific js files
+     * This file will be included at the end of body
+     * @var array
+     */
     protected $jsPostloadsFiles = array();
-    
+    /**
+     * Subview added to this view
+     * @var array
+     */
     protected $views = array();
     
     public function __construct()
@@ -37,6 +55,9 @@ abstract class View
         $this->addCssFiles("/script/css/style.css");
     }
 
+    /**
+     * Add css and js file to view and render it
+     */
     protected function render()
     {
         if(isset($this->cssFiles[0]))
@@ -64,12 +85,19 @@ abstract class View
         }
     }
 
+    /**
+     * Render and display view
+     */
     public function display()
     {
         $this->render();
         $this->smarty->display($this->template);
     }
 
+    /**
+     * Render view and return it as HTML code
+     * @return string
+     */
     public function fetch()
     {
         $this->render();
@@ -80,16 +108,34 @@ abstract class View
     /**************************************************************************/
     /**************************************************************************/
     
+    /**
+     * Set template file name for view
+     * @param string $template template file name
+     */
     public function setTemplate($template)
     {
         $this->template = $template;
     }
     
+    /**
+     * Add new subview to this view
+     * Added subview will be rendered and set to the variable $name in this view
+     * @param string $name variable name in this view to which be set rendered subview
+     * @param \views\View $view
+     */
     public function addView($name, \views\View $view)
     {
         $this->views[$name] = $view;
     }
 
+    /**
+     * Add new CSS file to view
+     * @param string $href url for css file
+     * @param string $type type attribute
+     * @param string $media media attribute
+     * @return boolean
+     * @throws \InvalidArgumentException
+     */
     public function addCssFiles($href, $type = "text/css", $media = null)
     {
         if(empty($href))
@@ -106,6 +152,11 @@ abstract class View
         return true;
     }
     
+    /**
+     * Add new JS file to view, file will be include in header
+     * @param string $src url for JS file
+     * @throws \InvalidArgumentException
+     */
     public function addJsFile($src)
     {
         if(empty($src))
@@ -116,6 +167,11 @@ abstract class View
         $this->jsFiles[] = $src;
     }
     
+    /**
+     * Add new JS file to view, file will be include at the end of body
+     * @param string $src url for JS file
+     * @throws \InvalidArgumentException
+     */
     public function addJsPostloadFile($src)
     {
         if(empty($src))
