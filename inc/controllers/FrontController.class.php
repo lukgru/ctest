@@ -3,8 +3,7 @@
 /**
  * Front controller design pattern
  * Used to have only one point of contact with request
- * 
- * 
+ * We have severall *Init method, in the future we can decide what we must have and init this
  */
 class FrontController
 {

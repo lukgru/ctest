@@ -35,12 +35,6 @@ class UserController extends Controller
             $errorView->display();
         }
     }
-
-    public function setErrorNo($error_no)
-    {
-        $this->error_no = (int) $error_no;
-    }
-
 }
 
 ?>

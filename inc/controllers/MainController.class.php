@@ -11,11 +11,6 @@ class MainController extends Controller
         $mainView = new \inc\views\MainView();
         $mainView->display();
     }
-
-    public function setErrorNo($error_no)
-    {
-        $this->error_no = (int)$error_no;
-    }
 }
 
 ?>
